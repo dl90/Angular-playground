@@ -1,0 +1,46 @@
+<nav class='navbar navbar-expand-sm navbar-dark bg-dark'>
+  <div class='container-fluid'>
+    <a [routerLink]="['/']" class='navbar-brand'>Recipe Book</a>
+
+    <button class="navbar-toggler" [ngStyle]="{ 'margin-right': isLoggedIn ? '80px' : '0px' }" type="button"
+      [appDropdown]="hamburger">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" #hamburger>
+      <ul class='navbar-nav mr-auto'>
+        <li class='nav-item'>
+          <a *ngIf="isLoggedIn; else auth" [routerLink]="['/recipes']" routerLinkActive="active" class='nav-link'>
+            Recipes
+          </a>
+          <ng-template #auth>
+            <a [routerLink]="['/auth']" routerLinkActive="active" class='nav-link'>
+              Sign In
+            </a>
+          </ng-template>
+        </li>
+
+        <li class='nav-item'>
+          <a [routerLink]="['/shopping-list']" routerLinkActive="active" class='nav-link'>
+            Shopping List
+          </a>
+        </li>
+
+        <li *ngIf="isLoggedIn" class=" nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" [appDropdown]="dropdown">
+            Manage
+          </a>
+          <div class="dropdown-menu" #dropdown>
+            <a class="dropdown-item" (click)="onSaveData()">Save</a>
+            <a class="dropdown-item" (click)="onLoadData()">Load</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <button *ngIf="isLoggedIn" type="button" class="btn btn-danger logout-btn" (click)="onLogout()">
+      Logout
+    </button>
+
+  </div>
+</nav>

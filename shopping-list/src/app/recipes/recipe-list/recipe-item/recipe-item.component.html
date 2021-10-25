@@ -1,0 +1,10 @@
+<a *ngIf="recipe" class="list-group-item list-group-item-action d-flex justify-content-between "
+  routerLinkActive="active" [routerLink]="[recipe.uuid]">
+  <div>
+    <h4 class='list-group-item-heading'>{{ recipe.name }}</h4>
+    <p class='list-group-item-text'>{{ recipe.description }}</p>
+  </div>
+  <div>
+    <img [src]='recipe.imagePath' [alt]='recipe.name' class='image-responsive rounded'>
+  </div>
+</a>

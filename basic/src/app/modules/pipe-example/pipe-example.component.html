@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-sm-2">
+    <h5>Pipes</h5>
+  </div>
+  <div class="col-sm-2">
+    {{ appStatus | async }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <form [formGroup]="newServerForm" (ngSubmit)="onAddServer()">
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-4 my-1">
+            <select class="form-control" formControlName="instanceType">
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+            </select>
+          </div>
+          <div class="col-sm-4 my-1">
+            <select class="form-control" formControlName="status">
+              <option value="offline">Offline</option>
+              <option value="stable">Stable</option>
+            </select>
+          </div>
+          <div class="col-sm-4 my-1">
+            <input type="date" class="form-control" formControlName="started">
+          </div>
+        </div>
+        <input type="text" class="form-control my-1" formControlName="name" placeholder="Server Name">
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-2">Add Server</button>
+    </form>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-xs-12">
+    <input type="text" class="form-control my-2" [(ngModel)]="statusFilter" placeholder="Status Filter">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let server of (servers | filter:statusFilter:'status' | sort:'name')"
+        [ngClass]="getStatusClasses(server)">
+        <span class="badge badge-primary bg-light text-dark mx-2">
+          {{ server.status }}
+        </span>
+        <strong>{{ server.name | shorten }}</strong> |
+        {{ server.instanceType | uppercase | reverse }} |
+        {{ server.started | date: 'fullDate' | uppercase }}
+      </li>
+    </ul>
+  </div>
+</div>

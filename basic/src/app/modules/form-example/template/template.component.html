@@ -1,0 +1,89 @@
+<h3>Template form</h3>
+
+<div class="row my-4">
+  <div class="col-xs-12">
+    <!-- <form (ngSubmit)="onSubmit(f)" #f="ngForm"> -->
+    <form (ngSubmit)="onSubmit()" #f="ngForm" class="form-group">
+
+      <div id="userData" ngModelGroup="userData" #userData="ngModelGroup">
+        <div class="form-group my-2">
+          <label for="a">Username</label>
+          <input type="text" name="username" id="a" class="form-control" ngModel required #username="ngModel">
+        </div>
+        <button class="btn btn-primary" type="button" (click)="suggestUserName()">Suggest an Username</button>
+
+        <div class="form-group my-2">
+          <label for="b">Mail</label>
+          <input type="email" name="email" id="b" class="form-control" ngModel required email #email="ngModel">
+          <small *ngIf="email.invalid && email.touched" class="form-text">Please enter a valid email</small>
+        </div>
+        <small *ngIf="userData.invalid && (username.touched && email.touched)" class="form-text">
+          User data is not valid
+        </small>
+      </div>
+
+      <div class="form-group my-2">
+        <label for="c">Secret Questions</label>
+        <select name="secret" id="c" class="form-control" [ngModel]="'pet'">
+          <option value="pet">Your first Pet?</option>
+          <option value="teacher">Your first teacher?</option>
+        </select>
+      </div>
+
+      <div class="form-group my-2">
+        <label for="d">Q and A</label>
+        <textarea name="answer" id="d" rows="3" class="form-control" [(ngModel)]="answer"></textarea>
+        <p>{{ answer }}</p>
+        <div class="radio" *ngFor="let g of gender; index as i">
+          <input type="radio" name="gender" id="g-{{ i }}" ngModel [value]="g" required>
+          <label for="g-{{ i }}" class="mx-2">{{ g }}</label>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Submit</button>
+    </form>
+  </div>
+</div>
+
+<div class="row mt-4" *ngIf="submitted">
+  <div class="col-xs-12">
+    <h4>You submitted the following:</h4>
+    <div>username: {{ user.username }}</div>
+    <div>email: {{ user.email }}</div>
+    <div>secret: {{ user.secret }}</div>
+    <div>answer: {{ user.answer }}</div>
+    <div>gender: {{ user.gender }} </div>
+  </div>
+</div>
+
+<hr style="margin: 100px 0px;" >
+
+<div class="row my-4">
+  <div class="col-xs-12">
+    <form #labForm="ngForm" (ngSubmit)="labSubmit(labForm)" class="form-group">
+
+      <div class=" my-2">
+        <label for="aa">Email</label>
+        <input type="email" name="labEmail" id='aa' class="form-control" required email ngModel #labEmail="ngModel">
+        <small *ngIf="labEmail.invalid && labEmail.touched" class="form-text">Invalid email</small>
+      </div>
+
+      <div class="my-2">
+        <label for="bb">Subscription</label>
+        <select name="subscription" id="bb" class="form-control" required [ngModel]="subscriptions[1]"
+          #labSub="ngModel">
+          <option *ngFor="let s of subscriptions" value="{{ s }}">{{ s }}</option>
+        </select>
+      </div>
+
+      <div class="my-2">
+        <label for="cc">Password</label>
+        <input type="password" name="labPassword" id="cc" class="form-control" required ngModel #labPassword="ngModel">
+        <small *ngIf="labPassword.invalid && labPassword.touched" class="form-text">Invalid Password</small>
+      </div>
+
+      <button class="btn btn-primary mt-2" type="submit" [disabled]="labForm.invalid">Submit</button>
+      <span *ngIf="labForm.invalid && labForm.touched" class="invalid-feedback mx-2">Invalid Form</span>
+    </form>
+  </div>
+</div>

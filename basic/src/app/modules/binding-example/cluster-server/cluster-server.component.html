@@ -1,0 +1,9 @@
+<div class="card my-1">
+  <div class="card-body">
+    <h5 class="card-heading">{{ element.name }}</h5>
+    <div class="card-text">
+      <strong *ngIf="element.type === 'server'" style="color: red">{{ element.content }}</strong>
+      <em *ngIf="element.type === 'blueprint'">{{ element.content }}</em>
+    </div>
+  </div>
+</div>

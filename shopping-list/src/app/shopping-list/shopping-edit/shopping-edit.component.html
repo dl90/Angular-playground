@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form (ngSubmit)="onSubmit(shoppingEdit)" #shoppingEdit="ngForm">
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" class="form-control" name="itemName" ngModel required #nameInput>
+        </div>
+
+        <div class="col-sm-2 form-group">
+          <label for="amount">Amount</label>
+          <input type="number" id="amount" class="form-control" name="itemAmount" ngModel required
+            [pattern]="'[1-9]+[0-9]*'" #amountInput>
+        </div>
+      </div>
+
+      <div class="row my-2">
+        <div class="col-xs-12">
+          <button type="submit" class="btn mx-1 btn-success" [disabled]="shoppingEdit.invalid">
+            {{ editMode ? "Update" : "Add" }}
+          </button>
+          <button type="button" class="btn mx-1 btn-primary" (click)="onClear()">Clear</button>
+          <button *ngIf="editMode" type="button" class="btn mx-1 btn-danger" (click)="onDelete()">Delete</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
