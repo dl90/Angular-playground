@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
+import { RouterModule, Routes } from '@angular/router'
 
-import { ServiceExampleRoutingModule } from './service-example-routing.module'
 import { LoggingService } from './services/logging.service'
 import { AccountsDataService } from './services/accounts-data.service'
 import { ServiceExampleComponent } from './service-example.component'
 import { NewAccountComponent } from './new-account/new-account.component'
 import { AccountComponent } from './account/account.component'
+
+
+const routes: Routes = [
+  { path: '', component: ServiceExampleComponent }
+]
 
 
 @NgModule({
@@ -17,7 +22,7 @@ import { AccountComponent } from './account/account.component'
   ],
   imports: [
     CommonModule,
-    ServiceExampleRoutingModule
+    RouterModule.forChild(routes)
   ],
 
   /*

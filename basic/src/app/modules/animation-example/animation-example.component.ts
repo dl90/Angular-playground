@@ -13,7 +13,6 @@ import { Component, OnInit } from '@angular/core'
 @Component({
   selector: 'app-animation-example',
   templateUrl: './animation-example.component.html',
-  styleUrls: ['./animation-example.component.css'],
   animations: [
     trigger('divAnimate', [
       state('normal', style({

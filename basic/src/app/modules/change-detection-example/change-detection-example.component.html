@@ -1,0 +1,3 @@
+<input type="text" (keyup)="onInput()">
+<button class="btn btn-primary" (click)="onChangeMessage()">message</button>
+<app-child *ngFor="let msg of messages" [message]="msg" (changed)="onChange()" (rendered)="onRender()"></app-child>

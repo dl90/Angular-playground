@@ -8,11 +8,10 @@ import { Component, Input, OnInit } from '@angular/core'
 })
 export class ClusterServerComponent implements OnInit {
 
-
   @Input('server') element: { type: string, name: string, content: string }
 
-  constructor () { }
+  constructor() { }
 
-  ngOnInit (): void { }
+  ngOnInit(): void { }
 
 }

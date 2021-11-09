@@ -18,6 +18,10 @@ const routes = [
         loadChildren: () => import('./modules/binding-example/binding-example.module').then(m => m.BindingExampleModule)
       },
       {
+        path: 'change-detection',
+        loadChildren: () => import('./modules/change-detection-example/change-detection-example.module').then(m => m.ChangeDetectionExampleModule)
+      },
+      {
         path: 'directives',
         loadChildren: () => import('./modules/directives-example/directives-example.module').then(m => m.DirectivesExampleModule)
       },

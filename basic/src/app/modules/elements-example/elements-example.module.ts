@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
+import { RouterModule, Routes } from '@angular/router'
 
-import { ElementsExampleRouterModule } from './elements-example-router.module'
 import { ElementsExampleComponent } from './elements-example.component'
 import { CompComponent } from './comp/comp.component'
+
+
+const routes: Routes = [
+  { path: '', component: ElementsExampleComponent },
+]
 
 
 @NgModule({
@@ -13,7 +18,7 @@ import { CompComponent } from './comp/comp.component'
   ],
   imports: [
     CommonModule,
-    ElementsExampleRouterModule
+    RouterModule.forChild(routes)
   ],
   // entryComponents: [CompComponent]
 })

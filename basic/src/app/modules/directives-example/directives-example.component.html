@@ -16,11 +16,11 @@
         <li *ngFor="let n of numbers" class='list-group-item '>
 
           <span appExampleDirective class='row'>{{n}}</span>
-
           <span [appExampleDirective2] class='row'>{{n}}</span>
-
           <span [appExampleDirective2]="'lightblue'" [defaultColor]="'lightgrey'" class='row'>
-            {{n}}</span>
+            {{n}}
+          </span>
+
         </li>
       </div>
     </ul>

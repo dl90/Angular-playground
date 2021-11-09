@@ -1,8 +1,9 @@
 <div class="row my-2">
   <div class="col-xs-12">
 
-    <!-- passing template -->
-    <ng-content></ng-content>
+    <!-- content projection, passing template -->
+    <ng-content select="[selector1]"></ng-content>
+    <ng-content select="[selector2]"></ng-content>
 
     <input type="text" #nameInputRef [(ngModel)]="name" placeholder="Server Name" class="form-control my-2">
     <input type="text" #contentInputRef [(ngModel)]="content" placeholder="Server Content" class="form-control my-2">

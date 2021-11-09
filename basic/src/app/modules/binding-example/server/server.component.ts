@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core'
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core'
 
 
 @Component({
@@ -8,14 +14,19 @@ import { Component, OnInit } from '@angular/core'
 })
 export class ServerComponent implements OnInit {
 
-  serverId = 1
+  @Input() server!: {serverId: number, serverName: string}
+  @Output() delete = new EventEmitter<string>()
   serverStatus = Math.random() > 0.5 ? 'online' : 'offline'
 
-  constructor () { }
+  constructor() { }
 
-  ngOnInit (): void { }
+  ngOnInit(): void { }
 
-  getColor () {
+  getColor() {
     return this.serverStatus === 'online' ? '#0d6efd' : '#fd7e14'
+  }
+
+  onClick() {
+    this.delete.emit(this.server.serverId + '-' + this.server.serverName)
   }
 }

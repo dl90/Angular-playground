@@ -1,0 +1,26 @@
+<div class="carousel">
+  <ng-container *ngFor="let s of screenshots; let i = index">
+    <img
+      *ngIf="!s.is_deleted && i == currentSlide"
+      [src]="s.image"
+      class="slide"
+      alt="{{ 'screenshot: ' + currentSlide }}"
+      @carouselAnimation
+    />
+  </ng-container>
+
+  <!-- <img
+    *ngIf="!screenshots[currentSlide].is_deleted"
+    [src]="screenshots[currentSlide].image"
+    class="slide"
+    alt="{{ 'screenshot: ' + currentSlide }}"
+    @carouselAnimation
+  /> -->
+
+  <button class="control prev" (click)="onPreviousClick()">
+    <span class="arrow left"></span>
+  </button>
+  <button class="control next" (click)="onNextClick()">
+    <span class="arrow right"></span>
+  </button>
+</div>

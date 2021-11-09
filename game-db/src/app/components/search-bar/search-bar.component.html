@@ -1,0 +1,21 @@
+<div class="search-container">
+  <a class="logo" routerLink="/">Home</a>
+  <form class="search-form" #searchInput="ngForm" (ngSubmit)="onSubmit()">
+    <input class="search-input" name="q" ngModel />
+    <button class="search-button">Search</button>
+  </form>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Sort</mat-label>
+    <mat-select
+      panelClass="sort-select"
+      [(value)]="sort"
+      (selectionChange)="updateSort()"
+      panelClass="sort-select"
+    >
+      <mat-option *ngFor="let s of sortOptions" [value]="s[1]">
+        {{ s[0] }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

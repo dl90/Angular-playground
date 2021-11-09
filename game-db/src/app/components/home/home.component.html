@@ -1,0 +1,33 @@
+<div class="games">
+  <ng-container *ngFor="let g of games$ | async">
+    <div class="game" (click)="viewDetails(g.id)">
+      <div class="game-thumb-container">
+        <img
+          *ngIf="g.background_image; else noImage"
+          class="game-thumbnail"
+          [src]="g.background_image"
+          alt="g.name"
+        />
+        <ng-template #noImage>
+          <img
+            class="game-thumbnail"
+            src="/assets/No-Image-Placeholder.svg"
+            alt="No image available"
+          />
+        </ng-template>
+      </div>
+
+      <div class="game-description">
+        <div class="game-name">{{ g.name }}</div>
+        <div class="game-platforms">
+          <img
+            *ngFor="let p of g.platforms"
+            class="game-platform-icon"
+            src="/assets/platforms/{{ p.platform.slug | platformFamily }}.svg"
+            alt="p.platform.name"
+          />
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

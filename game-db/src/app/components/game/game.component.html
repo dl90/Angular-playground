@@ -1,0 +1,43 @@
+<div class="game" *ngIf="game">
+  <div class="game-banner">
+    <img
+      *ngIf="game.background_image"
+      class="game-banner-image"
+      [src]="game.background_image"
+      [alt]="game.name"
+    />
+  </div>
+
+  <div class="game-header-anchor">
+    <div class="game-header">
+      <h1 class="game-header-title">{{ game.name }}</h1>
+      <h2 class="game-header-release-date">{{ game.released | date }}</h2>
+      <div class="game-header-genre">
+        <span *ngFor="let genre of game.genres">{{ genre.name }}</span>
+      </div>
+      <div class="game-gauge">
+        <mwl-gauge
+          *ngIf="game"
+          [max]="100"
+          [dialStartAngle]="180"
+          [dialEndAngle]="0"
+          [value]="rating"
+          [animated]="true"
+          [color]="getColor"
+          [animationDuration]="2"
+        ></mwl-gauge>
+        <a
+          class="game-gauge-label"
+          target="_blank"
+          [href]="game.metacritic_url"
+        >
+          Metacritic
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="game-info">
+    <app-game-tabs [game]="game"></app-game-tabs>
+  </div>
+</div>

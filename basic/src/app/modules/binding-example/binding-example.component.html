@@ -1,16 +1,18 @@
 <div class="row my-2">
   <div class="col-sm-4">
     <!-- [value]="serverName" -->
-    <input type="text" (input)="updateServerName($event)" class="form-control" placeholder="Event binding">
+    <input type="text" (input)="updateServerName($event)" class="form-control" placeholder="Event binding"
+      [attr.custom-attribute]="'test'" [class.custom-class]="true">
   </div>
   <div class="col-sm-4">
-    <input type="text" [(ngModel)]="serverName" class="form-control" placeholder="Two way binding">
+    <input type="text" [(ngModel)]="serverName" class="form-control" placeholder="Two way binding"
+      [class]="['custom-class', 'custom-class-2']">
   </div>
   <div class="col-sm-4">
     <p>Server Name: {{ serverName }}</p>
   </div>
 
-  <div class="col-sm-12">
+  <div class="col-sm-12 mt-4">
     <button type="button" [disabled]="!allowNewServer" (click)="onCreateServer()" class="btn btn-primary my-2">
       Add Server
     </button>
@@ -25,17 +27,21 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-12 mb-4">
     <hr>
-    <app-server *ngFor="let s of servers"></app-server>
-    <hr style="height: 10px">
+    <app-server *ngFor="let s of servers" (delete)="onDeleteServer($event)" [server]="s"></app-server>
+    <hr style="height: 5px">
   </div>
 </div>
 
 <div class="row">
-  <app-cluster-form (serverCreated)="onServerAdded($event)" (blueprintCreated)="onBlueprintAdded($event)">
-    <h3>Template from parent</h3>
-  </app-cluster-form>
+  <div class="col-sm-12 my-4">
+    <app-cluster-form (serverCreated)="onServerAdded($event)" (blueprintCreated)="onBlueprintAdded($event)">
+      <!-- content projection -->
+      <div selector2>Selector 2</div>
+      <h3 selector1>Hi from parent</h3>
+    </app-cluster-form>
+  </div>
 </div>
 
 <div class="row">
@@ -51,7 +57,7 @@
     <span *ngIf="show" [ngStyle]="{'margin-left': '10px'}">secret message</span>
     <hr>
     <div *ngFor="let h of history; index as i">
-      <div [ngClass]="{warn: i >= 4}">{{i + 1}}: {{h}}</div>
+      <div [ngClass]="{'warn': i >= 4}">{{i + 1}}: {{h}}</div>
     </div>
   </div>
 </div>

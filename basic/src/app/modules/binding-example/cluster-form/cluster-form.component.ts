@@ -15,7 +15,6 @@ import {
 })
 export class ClusterFormComponent implements OnInit, AfterViewInit {
 
-
   @Output() serverCreated = new EventEmitter<{ serverName: string, serverContent: string }>()
   @Output() blueprintCreated = new EventEmitter<{ blueprintName: string, blueprintContent: string }>()
 
@@ -31,12 +30,12 @@ export class ClusterFormComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit (): void {
-    console.log(this.contentInputRef.nativeElement)
+    // console.log(this.contentInputRef.nativeElement)
   }
 
   onAddServer (nameInputRef: HTMLInputElement): void {
-    console.log(nameInputRef.value)
-    console.log(this.contentInputRef.nativeElement.value)
+    // console.log(nameInputRef.value)
+    // console.log(this.contentInputRef.nativeElement.value)
 
     this.serverCreated.emit({
       serverName: this.name,

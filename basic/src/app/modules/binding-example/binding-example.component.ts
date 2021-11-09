@@ -1,35 +1,43 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core'
+
+import { ClusterFormComponent } from './cluster-form/cluster-form.component'
 
 
 @Component({
   selector: 'app-binding-example',
   templateUrl: './binding-example.component.html'
 })
-export class BindingExampleComponent implements OnInit {
+export class BindingExampleComponent implements OnInit, AfterViewInit {
+
+  @ViewChild(ClusterFormComponent) clusterForm: ClusterFormComponent
 
   allowNewServer = false
   createServerStatus: string
   serverName: string
   servers = [
-    { serverId: 1, serverName: 'Server 1' },
-    { serverId: 2, serverName: 'Server 2' },
-    { serverId: 3, serverName: 'Server 3' },
-    { serverId: 4, serverName: 'Server 4' },
+    { serverId: 1, serverName: 'Server a' },
+    { serverId: 2, serverName: 'Server b' },
+    { serverId: 3, serverName: 'Server c' },
+    { serverId: 4, serverName: 'Server d' },
   ]
+  private serverId = 5
   serverElements = [
     { type: 'server', name: 'Server 1', content: 'This is server 1' },
   ]
 
-  constructor () { }
+  constructor() { }
 
-  ngOnInit (): void {
+  ngOnInit(): void {
     setTimeout(() => this.allowNewServer = true, 1000)
   }
 
-  onCreateServer () {
+  ngAfterViewInit(): void {
+  }
+
+  onCreateServer() {
     this.allowNewServer = false
     setTimeout(() => {
-      this.servers.push({ serverId: this.servers.length, serverName: this.serverName })
+      this.servers.push({ serverId: this.serverId++, serverName: this.serverName })
       this.createServerStatus = 'Server was created!'
       this.serverName = ''
     }, 1000)
@@ -40,11 +48,15 @@ export class BindingExampleComponent implements OnInit {
     }, 3000)
   }
 
-  updateServerName (event: any) {
+  onDeleteServer(serverHash: string) {
+    this.servers = this.servers.filter(server => server.serverId + "-" + server.serverName !== serverHash)
+  }
+
+  updateServerName(event: any) {
     this.serverName = event.target.value
   }
 
-  onServerAdded (serverData: { serverName: string, serverContent: string }) {
+  onServerAdded(serverData: { serverName: string, serverContent: string }) {
     this.serverElements.push({
       type: 'server',
       name: serverData.serverName,
@@ -52,7 +64,7 @@ export class BindingExampleComponent implements OnInit {
     })
   }
 
-  onBlueprintAdded (blueprintData: { blueprintName: string, blueprintContent: string }) {
+  onBlueprintAdded(blueprintData: { blueprintName: string, blueprintContent: string }) {
     this.serverElements.push({
       type: 'blueprint',
       name: blueprintData.blueprintName,
@@ -63,7 +75,7 @@ export class BindingExampleComponent implements OnInit {
   show = false
   history = []
 
-  toggle (event: any) {
+  toggle(event: any) {
     this.history.push(event.timeStamp)
     this.show = !this.show
   }

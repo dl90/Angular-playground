@@ -23,12 +23,12 @@ export class ExampleDirective2 implements OnInit {
   // bind to any property of element with this directive
   @HostBinding('style.backgroundColor') backgroundColor: string
 
-  constructor (
+  constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.ele = this.elementRef.nativeElement
     this.backgroundColor = this.defaultColor
 
@@ -41,14 +41,14 @@ export class ExampleDirective2 implements OnInit {
     // })
   }
 
-  @HostListener('mouseenter') mouseover (eventData: Event) {
+  @HostListener('mouseenter') mouseover(eventData: Event) {
     console.dir(this.ele)
     // this.renderer.setStyle(this.ele, 'background-color', 'lavender')
 
     this.backgroundColor = this.highlightColor
   }
 
-  @HostListener('mouseout') mouseout (eventData: Event) {
+  @HostListener('mouseout') mouseout(eventData: Event) {
     // this.renderer.setStyle(this.ele, 'background-color', '')
 
     this.backgroundColor = this.defaultColor
