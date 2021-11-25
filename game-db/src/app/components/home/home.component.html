@@ -1,6 +1,6 @@
 <div class="games">
-  <ng-container *ngFor="let g of games$ | async">
-    <div class="game" (click)="viewDetails(g.id)">
+  <ng-container *ngIf="games$ | async as games">
+    <div class="game" *ngFor="let g of games" (click)="viewDetails(g.id)">
       <div class="game-thumb-container">
         <img
           *ngIf="g.background_image; else noImage"

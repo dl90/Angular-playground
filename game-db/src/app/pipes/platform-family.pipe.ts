@@ -1,7 +1,7 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core'
 
 @Pipe({
-  name: 'platformFamily',
+  name: 'platformFamily'
 })
 export class PlatformFamilyPipe implements PipeTransform {
   private platformFamilies = [
@@ -15,10 +15,10 @@ export class PlatformFamilyPipe implements PipeTransform {
     'playstation',
     'sega',
     'web',
-    'xbox',
-  ];
+    'xbox'
+  ]
 
   transform(value: string): string {
-    return this.platformFamilies.find((p) => value.startsWith(p)) || 'pc';
+    return this.platformFamilies.find((p) => value.startsWith(p)) || 'pc'
   }
 }

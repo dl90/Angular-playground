@@ -1,0 +1,11 @@
+* {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+
+  &,
+  &:before,
+  &:after {
+    box-sizing: border-box;
+  }
+}

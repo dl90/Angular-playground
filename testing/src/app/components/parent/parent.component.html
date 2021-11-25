@@ -1,0 +1,10 @@
+<app-input-event></app-input-event>
+<hr />
+<app-child-a></app-child-a>
+<div id="delayed-message">{{ delayedMessage$ | async }}</div>
+<hr />
+<div class="grid-container">
+  <div *ngFor="let post of posts" class="grid-item">
+    <app-child-b [post]="post" (selected)="onSelect($event)"></app-child-b>
+  </div>
+</div>

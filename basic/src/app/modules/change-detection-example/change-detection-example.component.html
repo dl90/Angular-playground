@@ -1,3 +1,8 @@
-<input type="text" (keyup)="onInput()">
+<input class="form-control my-2" type="text" (change)="onInput($event)" />
 <button class="btn btn-primary" (click)="onChangeMessage()">message</button>
-<app-child *ngFor="let msg of messages" [message]="msg" (changed)="onChange()" (rendered)="onRender()"></app-child>
+<app-child
+  *ngFor="let msg of messages"
+  [message]="msg"
+  (changed)="onChange()"
+  (rendered)="onRender()"
+></app-child>

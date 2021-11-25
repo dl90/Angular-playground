@@ -1,9 +1,12 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
   OnChanges,
+  OnDestroy,
+  OnInit,
   Output,
   SimpleChanges
 } from '@angular/core'
@@ -14,16 +17,39 @@ import {
   templateUrl: './child.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ChildComponent implements OnChanges {
+export class ChildComponent implements OnInit, OnChanges, OnDestroy {
   @Input() message: { msg: string }
-  @Output() changed = new EventEmitter<void>()
-  @Output() rendered = new EventEmitter<void>()
+  @Output() changed = new EventEmitter()
+  @Output() rendered = new EventEmitter()
+  private _interval: ReturnType<typeof setInterval>
 
-  constructor() { }
+  constructor(
+    private _changeDetectorRef: ChangeDetectorRef
+  ) { }
+
+
+  ngOnInit(): void {
+    this._changeDetectorRef.detach()
+    // this._changeDetectorRef.reattach()
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // console.log('change', changes.message.currentValue)
+    console.log('change', changes.message.currentValue)
     this.changed.emit()
+  }
+
+  ngOnDestroy(): void {
+    this._interval && clearInterval(this._interval)
+  }
+
+  onPoke(): void {
+    this.message.msg = 'poked'
+  }
+
+  onPoll(): void {
+    this._interval = setInterval(() => {
+      this._changeDetectorRef.detectChanges()
+    }, 1000)
   }
 
   onRender(): void {

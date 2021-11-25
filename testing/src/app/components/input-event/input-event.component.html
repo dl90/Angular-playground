@@ -1,0 +1,22 @@
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">email</label>
+      <input type="text" id="email" formControlName="email" />
+    </div>
+
+    <div class="form-group">
+      <label for="password">password</label>
+      <input type="password" id="password" formControlName="password" />
+    </div>
+
+    <div class="form-prompt">
+      <small
+        *ngIf="form.status === 'INVALID' && form.touched && !form.pristine"
+      >
+        Not valid
+      </small>
+    </div>
+    <button class="btn-submit" type="submit">Submit</button>
+  </form>
+</div>

@@ -1,22 +1,22 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { FormsModule } from '@angular/forms'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 
-import { MaterialUIModule } from './material-ui.module';
-import { GaugeModule } from 'angular-gauge';
+import { MaterialUIModule } from './material-ui.module'
+import { GaugeModule } from 'angular-gauge'
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { HomeComponent } from './components/home/home.component';
-import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
-import { ErrorsInterceptor } from './interceptors/errors.interceptor';
-import { PlatformFamilyPipe } from './pipes/platform-family.pipe';
-import { GameComponent } from './components/game/game.component';
-import { GameTabsComponent } from './components/game-tabs/game-tabs.component';
-import { CarouselComponent } from './components/carousel/carousel.component';
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
+import { SearchBarComponent } from './components/search-bar/search-bar.component'
+import { HomeComponent } from './components/home/home.component'
+import { ApiKeyInterceptor } from './interceptors/api-key.interceptor'
+import { ErrorsInterceptor } from './interceptors/errors.interceptor'
+import { PlatformFamilyPipe } from './pipes/platform-family.pipe'
+import { GameComponent } from './components/game/game.component'
+import { GameTabsComponent } from './components/game-tabs/game-tabs.component'
+import { CarouselComponent } from './components/carousel/carousel.component'
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     PlatformFamilyPipe,
     GameComponent,
     GameTabsComponent,
-    CarouselComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -35,20 +35,20 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     FormsModule,
     HttpClientModule,
     GaugeModule.forRoot(),
-    MaterialUIModule,
+    MaterialUIModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiKeyInterceptor,
-      multi: true,
+      multi: true
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorsInterceptor,
-      multi: true,
-    },
+      multi: true
+    }
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -15,6 +15,7 @@ import {
 export class ExampleDirective2 implements OnInit {
 
   ele: HTMLElement
+
   @Input() defaultColor = 'transparent'
 
   // setting alias same as directive => single input directive, eg [ngStyles]="{}"
@@ -33,11 +34,11 @@ export class ExampleDirective2 implements OnInit {
     this.backgroundColor = this.defaultColor
 
     // this.renderer.listen(this.ele, 'mouseover', () => {
-    //   this.renderer.setStyle(ele, 'background-color', 'lavender')
+    //   this.renderer.setStyle(this.ele, 'background-color', 'lavender')
     // })
 
     // this.renderer.listen(this.ele, 'mouseout', () => {
-    //   this.renderer.setStyle(ele, 'background-color', '')
+    //   this.renderer.setStyle(this.ele, 'background-color', '')
     // })
   }
 
