@@ -8,12 +8,10 @@ import {
   Renderer2
 } from '@angular/core'
 
-
 @Directive({
   selector: '[appExampleDirective2]'
 })
 export class ExampleDirective2 implements OnInit {
-
   ele: HTMLElement
 
   @Input() defaultColor = 'transparent'
@@ -24,10 +22,7 @@ export class ExampleDirective2 implements OnInit {
   // bind to any property of element with this directive
   @HostBinding('style.backgroundColor') backgroundColor: string
 
-  constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer2
-  ) { }
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit() {
     this.ele = this.elementRef.nativeElement
@@ -54,5 +49,4 @@ export class ExampleDirective2 implements OnInit {
 
     this.backgroundColor = this.defaultColor
   }
-
 }

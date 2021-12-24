@@ -9,25 +9,10 @@ import { ReversePipe } from './pipes/reverse.pipe'
 import { SortPipe } from './pipes/sort.pipe'
 import { PipeExampleComponent } from './pipe-example.component'
 
-
-const routes: Routes = [
-  { path: '', component: PipeExampleComponent }
-]
+const routes: Routes = [{ path: '', component: PipeExampleComponent }]
 
 @NgModule({
-  declarations: [
-    PipeExampleComponent,
-
-    ShortenPipe,
-    FilterPipe,
-    ReversePipe,
-    SortPipe
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule.forChild(routes)
-  ],
+  declarations: [PipeExampleComponent, ShortenPipe, FilterPipe, ReversePipe, SortPipe],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule.forChild(routes)]
 })
-export class PipeExampleModule { }
+export class PipeExampleModule {}

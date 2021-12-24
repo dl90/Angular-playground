@@ -2,15 +2,12 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  EventEmitter,
   Input,
   OnChanges,
   OnDestroy,
   OnInit,
-  Output,
   SimpleChanges
 } from '@angular/core'
-
 
 @Component({
   selector: 'app-child',
@@ -19,23 +16,20 @@ import {
 })
 export class ChildComponent implements OnInit, OnChanges, OnDestroy {
   @Input() message: { msg: string }
-  @Output() changed = new EventEmitter()
-  @Output() rendered = new EventEmitter()
   private _interval: ReturnType<typeof setInterval>
+  changeCounter = 0
+  renderCounter = 0
 
-  constructor(
-    private _changeDetectorRef: ChangeDetectorRef
-  ) { }
-
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this._changeDetectorRef.detach()
-    // this._changeDetectorRef.reattach()
+    // this.cdr.detach()
+    // this.cdr.reattach()
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log('change', changes.message.currentValue)
-    this.changed.emit()
+    this.changeCounter++
   }
 
   ngOnDestroy(): void {
@@ -48,13 +42,11 @@ export class ChildComponent implements OnInit, OnChanges, OnDestroy {
 
   onPoll(): void {
     this._interval = setInterval(() => {
-      this._changeDetectorRef.detectChanges()
+      this.cdr.detectChanges()
     }, 1000)
   }
 
   onRender(): void {
-    console.log('rendered')
-    // this.rendered.emit()
+    this.renderCounter++
   }
-
 }

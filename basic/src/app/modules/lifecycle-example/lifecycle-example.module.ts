@@ -4,21 +4,12 @@ import { RouterModule, Routes } from '@angular/router'
 
 import { LifecycleExampleComponent } from './lifecycle-example.component'
 import { FormsModule } from '@angular/forms'
+import { ChildComponent } from './child/child.component'
 
-
-const routes: Routes = [
-  { path: '', component: LifecycleExampleComponent }
-]
-
+const routes: Routes = [{ path: '', component: LifecycleExampleComponent }]
 
 @NgModule({
-  declarations: [
-    LifecycleExampleComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule.forChild(routes)
-  ]
+  declarations: [LifecycleExampleComponent, ChildComponent],
+  imports: [CommonModule, FormsModule, RouterModule.forChild(routes)]
 })
-export class LifecycleExampleModule { }
+export class LifecycleExampleModule {}

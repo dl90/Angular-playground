@@ -1,0 +1,31 @@
+<div class="my-4">
+  <h4>OnPush</h4>
+
+  <div class="input-group my-1">
+    <label class="input-group-text" for="bar">bar</label>
+    <input
+      id="bar"
+      class="form-control"
+      type="text"
+      [value]="foo.bar"
+      (change)="foo.bar = $event.target.value"
+    />
+  </div>
+
+  <div class="input-group my-1">
+    <label class="input-group-text" for="baz">baz</label>
+    <input
+      id="baz"
+      class="form-control"
+      type="text"
+      [value]="foo.baz"
+      (change)="foo.baz = $event.target.value"
+    />
+  </div>
+
+  <em>changes calls change detection on entire component tree, changing both comps</em>
+  <code class="p-2">
+    <div>{{ foo.lastChanged() | date: 'mediumTime' }}</div>
+    <pre>{{ foo | json }}</pre>
+  </code>
+</div>

@@ -9,8 +9,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
 export class InputEventComponent implements OnInit {
   form!: FormGroup
 
-  constructor() {}
-
   ngOnInit(): void {
     this.initializeForm()
   }
@@ -22,10 +20,7 @@ export class InputEventComponent implements OnInit {
   private initializeForm(): void {
     this.form = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(6)
-      ])
+      password: new FormControl('', [Validators.required, Validators.minLength(6)])
     })
   }
 }

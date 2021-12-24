@@ -10,7 +10,6 @@
 <div class="row">
   <div class="col-sm-12">
     <form [formGroup]="newServerForm" (ngSubmit)="onAddServer()">
-
       <div class="form-group">
         <div class="row">
           <div class="col-sm-4 my-1">
@@ -27,10 +26,15 @@
             </select>
           </div>
           <div class="col-sm-4 my-1">
-            <input type="date" class="form-control" formControlName="started">
+            <input type="date" class="form-control" formControlName="started" />
           </div>
         </div>
-        <input type="text" class="form-control my-1" formControlName="name" placeholder="Server Name">
+        <input
+          type="text"
+          class="form-control my-1"
+          formControlName="name"
+          placeholder="Server Name"
+        />
       </div>
 
       <button type="submit" class="btn btn-primary mt-2">Add Server</button>
@@ -38,14 +42,22 @@
   </div>
 </div>
 
-<hr>
+<hr />
 
 <div class="row">
   <div class="col-xs-12">
-    <input type="text" class="form-control my-2" [(ngModel)]="statusFilter" placeholder="Status Filter">
+    <input
+      type="text"
+      class="form-control my-2"
+      [(ngModel)]="statusFilter"
+      placeholder="Status Filter"
+    />
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let server of (servers | filter:statusFilter:'status' | sort:'name')"
-        [ngClass]="getStatusClasses(server)">
+      <li
+        class="list-group-item"
+        *ngFor="let server of servers | filter: statusFilter:'status' | sort: 'name'"
+        [ngClass]="getStatusClasses(server)"
+      >
         <span class="badge badge-primary bg-light text-dark mx-2">
           {{ server.status }}
         </span>

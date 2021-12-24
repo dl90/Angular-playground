@@ -1,42 +1,35 @@
-import { Component } from '@angular/core'
+import { AfterViewChecked, Component, OnInit } from '@angular/core'
+import { Observable, take, timer } from 'rxjs'
 
-// https://blog.angular-university.io/onpush-change-detection-how-it-works/
 @Component({
   selector: 'app-change-detection-example',
   templateUrl: './change-detection-example.component.html'
 })
-export class ChangeDetectionExampleComponent {
-
-  messages = [
-    { msg: 'msg 1' },
-    { msg: 'msg 2' },
-    { msg: 'msg 3' }
-  ]
+export class ChangeDetectionExampleComponent implements AfterViewChecked, OnInit {
+  message = { msg: 'msg 1' }
   newMessage: string
   changeCounter = 0
   renderCounter = 0
 
-  constructor() { }
+  foo1 = { bar: 'bar1', baz: 'baz1', lastChanged: () => new Date() }
+  foo2 = { bar: 'bar2', baz: 'baz2', lastChanged: () => new Date() }
 
-  onInput(event: any): void {
-    this.newMessage = event.target.value
-  }
+  barObs$: Observable<number>
 
-  async onChangeMessage(): Promise<void> {
-    this.messages[0].msg = this.newMessage
-
-    for (const msg of this.messages)
-      msg.msg = await new Promise(resolve => setTimeout(() => resolve(this.newMessage), 1000))
-
-  }
-
-  onChange(): void {
-    this.changeCounter++
-    console.log('change', this.changeCounter)
+  ngOnInit(): void {
+    // this.barObs$ = timer(1000, 1000).pipe(take(50))
   }
 
   onRender(): void {
+    // this.renderCounter++
+  }
+
+  ngAfterViewChecked(): void {
     this.renderCounter++
-    console.log('render', this.renderCounter)
+  }
+
+  onChangeMessage(): void {
+    this.message = { msg: this.newMessage }
+    this.changeCounter++
   }
 }

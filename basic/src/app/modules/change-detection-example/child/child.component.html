@@ -2,5 +2,8 @@
   <button class="btn btn-primary mx-2" (click)="onPoke()">poke</button>
   <button class="btn btn-primary mx-2" (click)="onPoll()">poll</button>
   {{ message.msg }}
+
+  <div>child change counter: {{ changeCounter }}</div>
+  <div>child render counter: {{ renderCounter }}</div>
 </div>
 <div class="d-none">{{ onRender() }}</div>

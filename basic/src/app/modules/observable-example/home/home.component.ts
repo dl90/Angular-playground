@@ -2,26 +2,19 @@ import { Component, OnDestroy, OnInit } from '@angular/core'
 import { interval, Subscription, Observable } from 'rxjs'
 import { map, filter } from 'rxjs/operators'
 
-
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: []
+  templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit, OnDestroy {
-
   private _interval: Subscription
   private _customInterval: Subscription
 
-  constructor () { }
-
-  ngOnInit (): void {
-
+  ngOnInit(): void {
     const customInterval = function (period: number, limit: number) {
-      if (period < 0)
-        throw new Error('Period must be greater than zero')
+      if (period < 0) throw new Error('Period must be greater than zero')
 
-      return new Observable(observer => {
+      return new Observable((observer) => {
         let count = 0
         const intervalRef = setInterval(() => {
           if (count > limit + 1) {
@@ -35,7 +28,6 @@ export class HomeComponent implements OnInit, OnDestroy {
           } else {
             observer.next(count++)
           }
-
         }, period)
       })
     }
@@ -48,15 +40,12 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe(console.log)
 
     this._customInterval = customInterval(1000, 5)
-      .pipe(
-        map((count: number) => `customInterval: ${count}`)
-      )
+      .pipe(map((count: number) => `customInterval: ${count}`))
       .subscribe(console.log, console.error)
   }
 
-  ngOnDestroy (): void {
+  ngOnDestroy(): void {
     this._interval.unsubscribe()
     this._customInterval.unsubscribe()
   }
-
 }

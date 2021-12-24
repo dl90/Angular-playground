@@ -1,3 +1,7 @@
-<div [ngStyle]="{ backgroundColor: getColor() }" [class.online]="serverStatus === 'online'" (click)="onClick()">
+<div
+  [ngStyle]="{ backgroundColor: getColor() }"
+  [class.online]="serverStatus === 'online'"
+  (click)="onClick()"
+>
   {{ serverStatus }} | {{ server.serverId }}: {{ server.serverName }}
 </div>

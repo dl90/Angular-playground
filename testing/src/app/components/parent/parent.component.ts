@@ -9,7 +9,7 @@ import { HttpService } from 'src/app/services/http.service'
   styleUrls: ['./parent.component.scss']
 })
 export class ParentComponent implements OnInit, OnDestroy {
-  private _onDestroy = new Subject<void>()
+  private _onDestroy$ = new Subject<void>()
   posts!: Array<{ userId: number; id: number; title: string; body: string }>
   delayedMessage$!: Observable<string>
   loadingMessage = 'loading...'
@@ -19,15 +19,15 @@ export class ParentComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.httpService
       .getPosts()
-      .pipe(takeUntil(this._onDestroy))
+      .pipe(takeUntil(this._onDestroy$))
       .subscribe((data) => (this.posts = data))
 
     this.getMessage()
   }
 
   ngOnDestroy(): void {
-    this._onDestroy.next()
-    this._onDestroy.complete()
+    this._onDestroy$.next()
+    this._onDestroy$.complete()
   }
 
   onSelect(id: number): void {
@@ -41,7 +41,7 @@ export class ParentComponent implements OnInit, OnDestroy {
         console.error(err)
         return of('An error occurred')
       }),
-      takeUntil(this._onDestroy)
+      takeUntil(this._onDestroy$)
     )
   }
 }

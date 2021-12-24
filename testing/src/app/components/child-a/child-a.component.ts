@@ -7,8 +7,6 @@ import { Component, OnInit } from '@angular/core'
 export class ChildAComponent implements OnInit {
   isOn!: boolean
 
-  constructor() {}
-
   ngOnInit(): void {
     this.isOn = false
   }

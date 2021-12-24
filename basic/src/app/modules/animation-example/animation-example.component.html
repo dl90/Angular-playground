@@ -2,8 +2,12 @@
   <div class="col-sm-12 my-2">
     <h1>Animations</h1>
     <button class="btn btn-primary" (click)="onAnimate()">Animate!</button>
-    <hr>
-    <div [@divAnimate]="divAnimationState" (@divAnimate.done)="onAnimationDone($event)" class="my-2 w-25">
+    <hr />
+    <div
+      [@divAnimate]="divAnimationState"
+      (@divAnimate.done)="onAnimationDone($event)"
+      class="my-2 w-25"
+    >
       <h5>Animate</h5>
     </div>
     <div [@divAnimateShrink]="divAnimationState" class="my-2 w-25">
@@ -14,9 +18,9 @@
 
 <div class="row mt-4">
   <div class="col-xs-12">
-    <input type="text" #input class="form-control">
+    <input type="text" #input class="form-control" />
     <button class="btn btn-primary mt-2" (click)="onAdd(input.value)">Add Item!</button>
-    <hr>
+    <hr />
     <ul class="list-group">
       <li class="list-group-item" (click)="onDelete(item)" *ngFor="let item of list" [@list]>
         {{ item }}
@@ -24,7 +28,7 @@
     </ul>
   </div>
 </div>
-<hr>
+<hr />
 <div class="row">
   <div class="col-xs-12">
     <ul class="list-group">
@@ -33,3 +37,4 @@
       </li>
     </ul>
   </div>
+</div>

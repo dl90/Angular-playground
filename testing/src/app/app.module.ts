@@ -18,12 +18,7 @@ import { InputEventComponent } from './components/input-event/input-event.compon
     ChildBComponent,
     InputEventComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent]
 })

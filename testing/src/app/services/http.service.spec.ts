@@ -1,7 +1,4 @@
-import {
-  HttpClientTestingModule,
-  HttpTestingController
-} from '@angular/common/http/testing'
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http'
 import { TestBed } from '@angular/core/testing'
 import { of } from 'rxjs'
@@ -20,11 +17,7 @@ describe('HttpService', () => {
   let service: HttpService
 
   beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', [
-      'get',
-      'post',
-      'delete'
-    ])
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'delete'])
     serviceWithSpy = new HttpService(httpClientSpy as any)
   })
 

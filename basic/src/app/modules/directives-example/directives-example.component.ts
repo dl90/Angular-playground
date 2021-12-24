@@ -1,18 +1,11 @@
-import { Component, OnInit } from '@angular/core'
-
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-directives-example',
   templateUrl: './directives-example.component.html'
 })
-export class DirectivesExampleComponent implements OnInit {
-
+export class DirectivesExampleComponent {
   numbers = [1, 2, 3]
-  oddToggle = false;
+  oddToggle = false
   input = ''
-
-  constructor () { }
-
-  ngOnInit (): void { }
-
 }

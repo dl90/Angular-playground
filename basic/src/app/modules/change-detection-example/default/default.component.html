@@ -1,0 +1,31 @@
+<div class="my-4">
+  <h4>Default</h4>
+
+  <div class="input-group my-1">
+    <label class="input-group-text" for="bar">bar</label>
+    <input
+      id="bar"
+      class="form-control"
+      type="text"
+      [value]="foo.bar"
+      (change)="foo.bar = $event.target.value"
+    />
+  </div>
+
+  <div class="input-group my-1">
+    <label class="input-group-text" for="baz">baz</label>
+    <input
+      id="baz"
+      class="form-control"
+      type="text"
+      [value]="foo.baz"
+      (change)="foo.baz = $event.target.value"
+    />
+  </div>
+
+  <em>change detection skips onPush if input is not changed, only this comp changes</em>
+  <code class="p-2">
+    <div>{{ foo.lastChanged() | date: 'mediumTime' }}</div>
+    <pre>{{ foo | json }}</pre>
+  </code>
+</div>

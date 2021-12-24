@@ -5,7 +5,6 @@ import { ObservableExampleComponent } from './observable-example.component'
 import { HomeComponent } from './home/home.component'
 import { UserComponent } from './user/user.component'
 
-
 const routes: Routes = [
   {
     path: '',
@@ -18,9 +17,8 @@ const routes: Routes = [
   }
 ]
 
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ObservableExampleRouter { }
+export class ObservableExampleRouter {}

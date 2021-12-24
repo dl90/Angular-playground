@@ -8,22 +8,11 @@ import { ServiceExampleComponent } from './service-example.component'
 import { NewAccountComponent } from './new-account/new-account.component'
 import { AccountComponent } from './account/account.component'
 
-
-const routes: Routes = [
-  { path: '', component: ServiceExampleComponent }
-]
-
+const routes: Routes = [{ path: '', component: ServiceExampleComponent }]
 
 @NgModule({
-  declarations: [
-    ServiceExampleComponent,
-    NewAccountComponent,
-    AccountComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ],
+  declarations: [ServiceExampleComponent, NewAccountComponent, AccountComponent],
+  imports: [CommonModule, RouterModule.forChild(routes)],
 
   /*
     # Injector hierarchy
@@ -32,9 +21,6 @@ const routes: Routes = [
     AppComponent: component wide but not other services
     Component: component and child components
   */
-  providers: [
-    LoggingService,
-    AccountsDataService
-  ]
+  providers: [LoggingService, AccountsDataService]
 })
-export class ServiceExampleModule { }
+export class ServiceExampleModule {}

@@ -4,22 +4,10 @@ import { Routes, RouterModule } from '@angular/router'
 
 import { AnimationExampleComponent } from './animation-example.component'
 
-
-const routes: Routes = [
-  {
-    path: '',
-    component: AnimationExampleComponent,
-  }
-]
-
+const routes: Routes = [{ path: '', component: AnimationExampleComponent }]
 
 @NgModule({
-  declarations: [
-    AnimationExampleComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ]
+  declarations: [AnimationExampleComponent],
+  imports: [CommonModule, RouterModule.forChild(routes)]
 })
-export class AnimationExampleModule { }
+export class AnimationExampleModule {}

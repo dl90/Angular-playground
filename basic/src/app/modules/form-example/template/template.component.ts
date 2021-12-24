@@ -1,14 +1,12 @@
 import { Component, ViewChild } from '@angular/core'
 import { NgForm } from '@angular/forms'
 
-
 @Component({
   selector: 'app-form-template',
   templateUrl: './template.component.html',
   styleUrls: ['../form-example.shared.css']
 })
 export class TemplateComponent {
-
   @ViewChild('f', { static: false }) ngFormRef: NgForm
   answer: string
   gender = ['male', 'female']
@@ -23,8 +21,7 @@ export class TemplateComponent {
     gender: ''
   }
 
-  suggestUserName () {
-
+  suggestUserName() {
     // this.ngFormRef.setValue({
     //   userData: {
     //     username: 'Superuser',
@@ -44,7 +41,7 @@ export class TemplateComponent {
   //   console.log(form)
   // }
 
-  onSubmit () {
+  onSubmit() {
     console.log(this.ngFormRef)
 
     const { username, email } = this.ngFormRef.value.userData
@@ -59,8 +56,7 @@ export class TemplateComponent {
     this.ngFormRef.reset()
   }
 
-  labSubmit (ngForm: NgForm) {
+  labSubmit(ngForm: NgForm) {
     console.log(ngForm.value)
   }
-
 }

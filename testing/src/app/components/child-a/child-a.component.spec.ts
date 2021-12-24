@@ -45,9 +45,7 @@ describe('ChildAComponent', () => {
     })
 
     it('should have correct label text (debugElement)', () => {
-      const switchLabelDebugElement = fixture.debugElement.query(
-        By.css('#switch-label')
-      )
+      const switchLabelDebugElement = fixture.debugElement.query(By.css('#switch-label'))
       const switchLabel = switchLabelDebugElement.nativeElement
 
       expect(switchLabel).toBeDefined()

@@ -1,12 +1,23 @@
 <div class="row my-2">
   <div class="col-xs-12">
-
     <!-- content projection, passing template -->
     <ng-content select="[selector1]"></ng-content>
     <ng-content select="[selector2]"></ng-content>
 
-    <input type="text" #nameInputRef [(ngModel)]="name" placeholder="Server Name" class="form-control my-2">
-    <input type="text" #contentInputRef [(ngModel)]="content" placeholder="Server Content" class="form-control my-2">
+    <input
+      type="text"
+      #nameInputRef
+      [(ngModel)]="name"
+      placeholder="Server Name"
+      class="form-control my-2"
+    />
+    <input
+      type="text"
+      #contentInputRef
+      [(ngModel)]="content"
+      placeholder="Server Content"
+      class="form-control my-2"
+    />
     <button (click)="onAddServer(nameInputRef)" class="btn btn-primary">Add Server</button>
     <button (click)="onAddBlueprint()" class="btn btn-primary mx-2">Add Server Blueprint</button>
   </div>

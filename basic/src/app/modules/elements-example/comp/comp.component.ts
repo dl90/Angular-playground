@@ -1,15 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input } from '@angular/core'
 
 @Component({
   selector: 'app-comp',
   templateUrl: './comp.component.html'
 })
-export class CompComponent implements OnInit {
-
+export class CompComponent {
   @Input() message = 'hello'
-
-  constructor () { }
-
-  ngOnInit (): void { }
-
 }

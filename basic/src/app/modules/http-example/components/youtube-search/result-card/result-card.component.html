@@ -1,0 +1,12 @@
+<div class="card h-100">
+  <div class="card-header">
+    {{ result.channel }}
+  </div>
+  <a href="{{ result.videoUrl }}">
+    <img class="card-img-top" [src]="result.thumbnailUrl" alt="{{ result.title }}" />
+  </a>
+  <div class="card-body">
+    <h5 class="card-title">{{ result.title }}</h5>
+    <p class="card-text">{{ result.description }}</p>
+  </div>
+</div>

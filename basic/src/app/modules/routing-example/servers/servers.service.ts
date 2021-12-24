@@ -1,4 +1,4 @@
-import { EventEmitter } from "@angular/core"
+import { EventEmitter } from '@angular/core'
 
 export interface Server {
   id: number
@@ -7,7 +7,6 @@ export interface Server {
 }
 
 export class ServersService {
-
   updateEventEmitter = new EventEmitter()
   private servers: Server[] = [
     {
@@ -27,16 +26,16 @@ export class ServersService {
     }
   ]
 
-  getServers (): Server[] {
+  getServers(): Server[] {
     return this.servers
   }
 
-  getServer (id: number): Server {
-    return this.servers.find(s => s.id === id)
+  getServer(id: number): Server {
+    return this.servers.find((s) => s.id === id)
   }
 
-  updateServer (id: number, serverInfo: { name: string, status: string }): boolean {
-    const server = this.servers.find(s => s.id === id)
+  updateServer(id: number, serverInfo: { name: string; status: string }): boolean {
+    const server = this.servers.find((s) => s.id === id)
     if (server) {
       server.name = serverInfo.name
       server.status = serverInfo.status

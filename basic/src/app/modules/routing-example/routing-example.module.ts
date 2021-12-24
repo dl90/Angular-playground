@@ -16,9 +16,7 @@ import { ServerComponent } from './servers/server/server.component'
 import { EditServerComponent } from './servers/edit-server/edit-server.component'
 import { UsersComponent } from './users/users.component'
 import { UserComponent } from './users/user/user.component'
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 import { ErrorComponent } from './error/error.component'
-
 
 @NgModule({
   declarations: [
@@ -29,20 +27,15 @@ import { ErrorComponent } from './error/error.component'
     EditServerComponent,
     UsersComponent,
     UserComponent,
-    PageNotFoundComponent,
     ErrorComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RoutingExampleRoutingModule,
-  ],
+  imports: [CommonModule, FormsModule, RoutingExampleRoutingModule],
   providers: [
     ServersService,
     AuthService,
     AuthGuardService,
     CanDeactivateGuardService,
     ServerResolverService
-  ],
+  ]
 })
-export class RoutingExampleModule { }
+export class RoutingExampleModule {}

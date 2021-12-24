@@ -8,19 +8,9 @@ import { ObservableExampleComponent } from './observable-example.component'
 import { HomeComponent } from './home/home.component'
 import { UserComponent } from './user/user.component'
 
-
 @NgModule({
-  declarations: [
-    ObservableExampleComponent,
-    HomeComponent,
-    UserComponent
-  ],
-  imports: [
-    CommonModule,
-    ObservableExampleRouter
-  ],
-  providers: [
-    UserService
-  ]
+  declarations: [ObservableExampleComponent, HomeComponent, UserComponent],
+  imports: [CommonModule, ObservableExampleRouter],
+  providers: [UserService]
 })
-export class ObservableExampleModule { }
+export class ObservableExampleModule {}

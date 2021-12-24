@@ -1,35 +1,42 @@
 <h3>Directives</h3>
 
-<div class='row'>
-  <div class='col-sm-12'>
-
-    <button (click)="oddToggle = !oddToggle" class='btn btn-primary my-2'>
-      Toggle
-    </button>
+<div class="row">
+  <div class="col-sm-12">
+    <button (click)="oddToggle = !oddToggle" class="btn btn-primary my-2">Toggle</button>
 
     <div *appIfNot="oddToggle">
       <div>Click on toggle</div>
     </div>
 
-    <ul class='list-group mt-4'>
+    <ul class="list-group mt-4">
       <div *ngIf="oddToggle">
-        <li *ngFor="let n of numbers" class='list-group-item '>
-
-          <span appExampleDirective class='row'>{{n}}</span>
-          <span [appExampleDirective2] class='row'>{{n}}</span>
-          <span [appExampleDirective2]="'lightblue'" [defaultColor]="'lightgrey'" class='row'>
-            {{n}}
+        <li *ngFor="let n of numbers" class="list-group-item">
+          <span appExampleDirective class="row">{{ n }}</span>
+          <span [appExampleDirective2] class="row">{{ n }}</span>
+          <span [appExampleDirective2]="'lightblue'" [defaultColor]="'lightgrey'" class="row">
+            {{ n }}
           </span>
-
         </li>
       </div>
     </ul>
 
-    <input type="text" class="form-control my-2" [(ngModel)]="input">
+    <div hidden appPopup [msg]="input" #popupRef="appPopup">Hidden</div>
+    <input
+      type="text"
+      class="form-control my-2"
+      [(ngModel)]="input"
+      (keydown.enter)="popupRef.onClick()"
+    />
     <div [ngSwitch]="true">
       <p *ngSwitchCase="input.length > 3">valid</p>
       <p *ngSwitchCase="input.length && input.length <= 3">invalid</p>
       <p *ngSwitchDefault>default: no input</p>
     </div>
+    <div class="col-sm-12">
+      <button class="btn btn-secondary" (click)="popupRef.onClick()">Popup</button>
+    </div>
+
+    <hr />
+    <div appComponentDirective [header]="'Howdy'">Project content to directive</div>
   </div>
 </div>

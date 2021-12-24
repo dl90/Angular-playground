@@ -62,10 +62,7 @@ describe('QueueStackService', () => {
     childQueueServiceSpy.dequeue.and.returnValue(dequeueStubValue)
     childQueueServiceSpy.size.and.returnValue(enqueueStubValue)
 
-    service = new QueueStackService(
-      childQueueServiceSpy,
-      {} as ChildStackService
-    )
+    service = new QueueStackService(childQueueServiceSpy, {} as ChildStackService)
 
     expect(service.enqueue(1)).toBe(enqueueStubValue)
     expect(childQueueServiceSpy.enqueue.calls.count()).toBe(1)
@@ -76,17 +73,11 @@ describe('QueueStackService', () => {
   it('#push() #pop() should return stubbed value from spy', () => {
     const pushStubValue = 10
     const popStubValue = 123
-    const childStackServiceSpy = jasmine.createSpyObj('ChildStackService', [
-      'push',
-      'pop'
-    ])
+    const childStackServiceSpy = jasmine.createSpyObj('ChildStackService', ['push', 'pop'])
     childStackServiceSpy.push.and.returnValue(pushStubValue)
     childStackServiceSpy.pop.and.returnValue(popStubValue)
 
-    service = new QueueStackService(
-      {} as ChildQueueService,
-      childStackServiceSpy
-    )
+    service = new QueueStackService({} as ChildQueueService, childStackServiceSpy)
 
     // replaces push call
     spyOn(service, 'push').and.callFake((value) => {

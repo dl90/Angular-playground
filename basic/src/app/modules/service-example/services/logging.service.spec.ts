@@ -1,6 +1,5 @@
 import { LoggingService } from './logging.service'
 
-
 describe('Logging service', () => {
   let service: LoggingService
 
@@ -11,5 +10,4 @@ describe('Logging service', () => {
   it('should be created', () => {
     expect(service).toBeTruthy()
   })
-
 })

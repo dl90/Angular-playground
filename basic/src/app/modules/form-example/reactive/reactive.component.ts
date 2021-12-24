@@ -2,27 +2,23 @@ import { Component, OnInit } from '@angular/core'
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Observable } from 'rxjs'
 
-
 @Component({
   selector: 'app-form-reactive',
   templateUrl: './reactive.component.html',
   styleUrls: ['../form-example.shared.css']
 })
 export class ReactiveComponent implements OnInit {
-
   genders = ['male', 'female']
   forbiddenUsernames = new Set(['root', 'admin'])
   form: FormGroup
   projectForm: FormGroup
   projectStatus = ['stable', 'critical', 'finished']
 
-  constructor () { }
-
-  ngOnInit (): void {
+  ngOnInit(): void {
     this.form = new FormGroup({
       data: new FormGroup({
         username: new FormControl('', [Validators.required, this.customValidator.bind(this)]),
-        email: new FormControl('', [Validators.required, Validators.email], [this.asyncValidator]),
+        email: new FormControl('', [Validators.required, Validators.email], [this.asyncValidator])
       }),
       gender: new FormControl('male', Validators.required),
       hobbies: new FormArray([])
@@ -58,61 +54,54 @@ export class ReactiveComponent implements OnInit {
     })
   }
 
-  onSubmit (): void {
+  onSubmit(): void {
     console.log(this.form)
     this.form.reset({ gender: 'male' })
   }
 
-  onAddHobby (): void {
-    (<FormArray>this.form.get('hobbies')).push(new FormControl(null, Validators.required))
+  onAddHobby(): void {
+    ;(<FormArray>this.form.get('hobbies')).push(new FormControl(null, Validators.required))
   }
 
   // getControls () {
   //   return (<FormArray>this.form.get('hobbies')).controls
   // }
 
-  get controls (): AbstractControl[] {
+  get controls(): AbstractControl[] {
     return (this.form.get('hobbies') as FormArray).controls
   }
 
-  customValidator (control: FormControl): { [s: string]: boolean } {
-    if (this.forbiddenUsernames.has(control.value))
-      return { 'forbiddenName': true }
+  customValidator(control: FormControl): { [s: string]: boolean } {
+    if (this.forbiddenUsernames.has(control.value)) return { forbiddenName: true }
 
     return null
   }
 
-  asyncValidator (control: FormControl): Promise<any> | Observable<any> {
+  asyncValidator(control: FormControl): Promise<any> | Observable<any> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        if (control.value === 'test@test.com')
-          resolve({ 'forbiddenEmail': true })
-        else
-          resolve(null)
+        if (control.value === 'test@test.com') resolve({ forbiddenEmail: true })
+        else resolve(null)
       }, 2000)
     })
   }
 
-  onProjectSubmit (): void {
+  onProjectSubmit(): void {
     console.log(this.projectForm.value)
   }
 
-  customProjectValidator (control: FormControl): { [s: string]: boolean } {
-    if (control.value === 'test')
-      return { 'forbiddenProjectName': true }
+  customProjectValidator(control: FormControl): { [s: string]: boolean } {
+    if (control.value === 'test') return { forbiddenProjectName: true }
 
     return null
   }
 
-  asyncCustomProjectValidator (control: FormControl): Promise<any> | Observable<any> {
+  asyncCustomProjectValidator(control: FormControl): Promise<any> | Observable<any> {
     return new Promise((resolve) => {
       setTimeout(() => {
-        if (control.value === 'test')
-          resolve({ 'forbiddenProjectName': true })
-        else
-          resolve(null)
+        if (control.value === 'test') resolve({ forbiddenProjectName: true })
+        else resolve(null)
       }, 1000)
     })
   }
-
 }

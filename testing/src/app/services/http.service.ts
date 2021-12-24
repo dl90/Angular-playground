@@ -13,9 +13,7 @@ export class HttpService {
   constructor(private http: HttpClient) {}
 
   getPost(id: number): Observable<any> {
-    return this.http
-      .get(API_URL + `/${id}`)
-      .pipe(retry(1), catchError(this.handleError))
+    return this.http.get(API_URL + `/${id}`).pipe(retry(1), catchError(this.handleError))
   }
 
   getPosts(): Observable<any> {
@@ -23,15 +21,11 @@ export class HttpService {
   }
 
   postPost(post: any): Observable<any> {
-    return this.http
-      .post(API_URL, post)
-      .pipe(retry(1), catchError(this.handleError))
+    return this.http.post(API_URL, post).pipe(retry(1), catchError(this.handleError))
   }
 
   deletePost(id: number): Observable<any> {
-    return this.http
-      .delete(API_URL + `/${id}`)
-      .pipe(retry(1), catchError(this.handleError))
+    return this.http.delete(API_URL + `/${id}`).pipe(retry(1), catchError(this.handleError))
   }
 
   delayedMessage(delayMs: number): Observable<any> {

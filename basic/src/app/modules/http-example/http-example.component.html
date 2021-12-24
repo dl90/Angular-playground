@@ -1,47 +1,12 @@
-<div class="row">
-  <div class="col-sm-12">
-    <form #postForm="ngForm" (ngSubmit)="onCreatePost()">
-      <div class="form-group my-2">
-        <input type="text" ngModel name="title" class="form-control" required placeholder="Title" />
-      </div>
-      <div class="form-group my-2">
-        <textarea ngModel name="content" class="form-control" required placeholder="Content"></textarea>
-      </div>
-      <button class="btn btn-primary my-2" type="submit" [disabled]="!postForm.valid || isFetching">
-        Send Post
-      </button>
-    </form>
-  </div>
-</div>
+<div class="container mt-4">
+  <ul class="nav nav-tabs mb-4">
+    <li role="presentation" class="nav-item">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['youtube-search']">Youtube Search</a>
+    </li>
+    <li role="presentation" class="nav-item">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['fb-post']">Firebase Post</a>
+    </li>
+  </ul>
 
-<hr />
-
-<div class="row">
-  <div class="col-sm-12">
-    <button class="btn btn-primary" (click)="onFetchPosts()">
-      Fetch Posts
-    </button>
-    <button class="btn btn-danger mx-2" [disabled]="loadedPosts.length === 0" (click)="onClearPosts()">
-      Clear Posts
-    </button>
-  </div>
-</div>
-
-<div class="row my-2">
-  <div class="col-sm-12">
-    <div *ngIf="loadedPosts.length === 0 && !isFetching && !error">No posts available!</div>
-    <ul *ngIf="loadedPosts.length > 0 && !isFetching" class="list-group my-2">
-      <li *ngFor="let post of loadedPosts" class="list-group-item">
-        <div class="row">
-          <strong class="col-sm-2">{{ post.title }}</strong>
-          <span class="col-sm-8 mx-3">{{ post.content }}</span>
-        </div>
-      </li>
-    </ul>
-    <div *ngIf="isFetching">Loading...</div>
-    <div *ngIf="!isFetching && error" class="alert alert-danger">
-      {{ error }}
-      <button type="button" class="btn btn-secondary mt-2" (click)="this.error = ''">Close</button>
-    </div>
-  </div>
+  <router-outlet></router-outlet>
 </div>

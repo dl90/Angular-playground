@@ -4,19 +4,10 @@ import { RouterModule, Routes } from '@angular/router'
 
 import { ZoneExampleComponent } from './zone-example.component'
 
-
-const routes: Routes = [
-  { path: '', component: ZoneExampleComponent }
-]
-
+const routes: Routes = [{ path: '', component: ZoneExampleComponent }]
 
 @NgModule({
-  declarations: [
-    ZoneExampleComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ]
+  declarations: [ZoneExampleComponent],
+  imports: [CommonModule, RouterModule.forChild(routes)]
 })
-export class ZoneExampleModule { }
+export class ZoneExampleModule {}

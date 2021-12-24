@@ -1,0 +1,37 @@
+<h3>Reactive form using FormBuilder</h3>
+
+<div class="row my-2">
+  <div class="col-xs-12">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group my-2">
+        <label for="_sku">SKU</label>
+        <input
+          type="text"
+          id="_sku"
+          class="form-control"
+          [class.is-invalid]="form.controls['sku'].invalid"
+          [formControl]="form.controls['sku']"
+        />
+        <small *ngIf="form.hasError('invalidSku', 'sku')" class="form-text">
+          SKU must begin with 123
+        </small>
+      </div>
+
+      <div class="form-group my-2">
+        <label for="_productName">Product Name (standalone 2-way binding)</label>
+        <input
+          type="text"
+          id="_productName"
+          class="form-control"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="productName"
+        />
+        <small class="form-text">
+          {{ productName || '&#8203;' }}
+        </small>
+      </div>
+
+      <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+    </form>
+  </div>
+</div>

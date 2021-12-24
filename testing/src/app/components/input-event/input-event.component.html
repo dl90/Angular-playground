@@ -11,11 +11,7 @@
     </div>
 
     <div class="form-prompt">
-      <small
-        *ngIf="form.status === 'INVALID' && form.touched && !form.pristine"
-      >
-        Not valid
-      </small>
+      <small *ngIf="form.status === 'INVALID' && form.touched && !form.pristine"> Not valid </small>
     </div>
     <button class="btn-submit" type="submit">Submit</button>
   </form>

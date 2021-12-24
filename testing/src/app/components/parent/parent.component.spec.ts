@@ -1,10 +1,4 @@
-import {
-  ComponentFixture,
-  fakeAsync,
-  flushMicrotasks,
-  TestBed,
-  tick
-} from '@angular/core/testing'
+import { ComponentFixture, fakeAsync, flushMicrotasks, TestBed, tick } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
 import { delay, of } from 'rxjs'
 import { By } from '@angular/platform-browser'
@@ -31,10 +25,7 @@ describe('ParentComponent', () => {
   }
 
   const delayMs = 1000
-  const HttpServiceSpy = jasmine.createSpyObj('HttpService', [
-    'getPosts',
-    'delayedMessage'
-  ])
+  const HttpServiceSpy = jasmine.createSpyObj('HttpService', ['getPosts', 'delayedMessage'])
   const getPostsSpy = HttpServiceSpy.getPosts.and.returnValue(of(stubValue)) // sync
   const delayedMessageSpy = HttpServiceSpy.delayedMessage.and.returnValue(
     of(stubMessage).pipe(delay(delayMs)) // async
@@ -42,12 +33,7 @@ describe('ParentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        ParentComponent,
-        ChildAComponent,
-        ChildBComponent,
-        InputEventComponent
-      ],
+      declarations: [ParentComponent, ChildAComponent, ChildBComponent, InputEventComponent],
       imports: [ReactiveFormsModule],
       // providers: [{ provide: HttpService, useValue: mockHttpService }]
       providers: [{ provide: HttpService, useValue: HttpServiceSpy }]
@@ -68,10 +54,10 @@ describe('ParentComponent', () => {
   it('should load sync stub values from spy.getPost()', () => {
     fixture.detectChanges()
     expect(getPostsSpy.calls.any()).toBe(true)
-    expect(delayedMessageSpy.calls.any()).toBe(true)
     expect(component.posts).toEqual(stubValue)
   })
 
+  // fakeAsync
   it('should load async stub values from spy.delayedMessage()', fakeAsync(() => {
     const stubLoadingMessage = 'test loading'
     const delayedMessageElement = fixture.debugElement.query(
@@ -80,6 +66,7 @@ describe('ParentComponent', () => {
     component.loadingMessage = stubLoadingMessage
 
     fixture.detectChanges()
+    expect(delayedMessageSpy.calls.any()).toBe(true)
     expect(component.delayedMessage$).toBeDefined()
     expect(delayedMessageElement.textContent).toBe(stubLoadingMessage)
 

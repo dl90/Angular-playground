@@ -8,14 +8,12 @@ interface Server {
   started: Date
 }
 
-
 @Component({
   selector: 'app-pipe-example',
   templateUrl: './pipe-example.component.html',
   styleUrls: []
 })
 export class PipeExampleComponent implements OnInit {
-
   servers: Server[] = [
     {
       instanceType: 'medium',
@@ -46,9 +44,7 @@ export class PipeExampleComponent implements OnInit {
   newServerForm: FormGroup
   appStatus: Promise<string>
 
-  constructor () { }
-
-  ngOnInit (): void {
+  ngOnInit(): void {
     this.newServerForm = new FormGroup({
       instanceType: new FormControl('small'),
       name: new FormControl(null),
@@ -56,14 +52,14 @@ export class PipeExampleComponent implements OnInit {
       started: new FormControl(null)
     })
 
-    this.appStatus = new Promise(resolve => {
+    this.appStatus = new Promise((resolve) => {
       setTimeout(() => {
         resolve('stable')
       }, 2000)
     })
   }
 
-  getStatusClasses (server: Server) {
+  getStatusClasses(server: Server) {
     return {
       'list-group-item-success': server.status === 'stable',
       'list-group-item-warning': server.status === 'offline',
@@ -71,7 +67,7 @@ export class PipeExampleComponent implements OnInit {
     }
   }
 
-  onAddServer () {
+  onAddServer() {
     this.servers.push({
       instanceType: this.newServerForm.value.instanceType,
       name: this.newServerForm.value.name,
@@ -81,8 +77,7 @@ export class PipeExampleComponent implements OnInit {
 
     this.newServerForm.reset({
       instanceType: 'small',
-      status: 'offline',
+      status: 'offline'
     })
   }
-
 }

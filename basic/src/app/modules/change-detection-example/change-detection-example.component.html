@@ -1,8 +1,24 @@
-<input class="form-control my-2" type="text" (change)="onInput($event)" />
-<button class="btn btn-primary" (click)="onChangeMessage()">message</button>
-<app-child
-  *ngFor="let msg of messages"
-  [message]="msg"
-  (changed)="onChange()"
-  (rendered)="onRender()"
-></app-child>
+<div class="col-sm-12">
+  <input class="form-control my-2" type="text" (change)="newMessage = $event.target.value" />
+  <button class="btn btn-primary" (click)="onChangeMessage()">message</button>
+  <div class="d-none">{{ onRender() }}</div>
+</div>
+<div>parent change counter: {{ changeCounter }}</div>
+<div>parent render counter: {{ renderCounter }}</div>
+
+<div class="my-4">
+  <app-child [message]="message"></app-child>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <app-default [foo]="foo1"></app-default>
+  </div>
+  <div class="col-sm-6">
+    <app-onpush [foo]="foo2"></app-onpush>
+  </div>
+</div>
+
+<div class="my-4">
+  <app-observable-onpush [obs$]="barObs$"></app-observable-onpush>
+</div>

@@ -4,24 +4,21 @@ import { Subscription } from 'rxjs'
 
 import { ServersService, Server } from '../servers.service'
 
-
 @Component({
   selector: 'app-server',
-  templateUrl: './server.component.html',
-  styleUrls: []
+  templateUrl: './server.component.html'
 })
 export class ServerComponent implements OnInit, OnDestroy {
-
   server: Server
   idParamSubscription: Subscription
 
-  constructor (
+  constructor(
     // private serversService: ServersService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {}
 
-  ngOnInit (): void {
+  ngOnInit(): void {
     // this.server = this.serversService.getServer(+this.activatedRoute.snapshot.params['id'])
     // this.idParamSubscription = this.activatedRoute.params.subscribe((params: Params) => {
     //   this.server = this.serversService.getServer(+params['id'])
@@ -32,18 +29,14 @@ export class ServerComponent implements OnInit, OnDestroy {
     })
   }
 
-  ngOnDestroy (): void {
+  ngOnDestroy(): void {
     // this.idParamSubscription.unsubscribe()
   }
 
-  onEdit (): void {
-    this.router.navigate(
-      ['edit'],
-      {
-        relativeTo: this.activatedRoute,
-        queryParamsHandling: 'preserve'
-      }
-    )
+  onEdit(): void {
+    this.router.navigate(['edit'], {
+      relativeTo: this.activatedRoute,
+      queryParamsHandling: 'preserve'
+    })
   }
-
 }

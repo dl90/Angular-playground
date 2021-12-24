@@ -12,7 +12,7 @@ describe('Accounts data service', () => {
     TestBed.configureTestingModule({
       providers: [
         AccountsDataService,
-        LoggingService,
+        LoggingService
         // { provider: LoggingService, useValue: loggingServiceSpy }
       ]
     })
@@ -25,6 +25,4 @@ describe('Accounts data service', () => {
     const accounts = await service.getAccounts()
     expect(Array.isArray(accounts)).toBe(true)
   }, 2000)
-
-
 })
