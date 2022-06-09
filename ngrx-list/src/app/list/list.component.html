@@ -1,0 +1,33 @@
+<div class="status-bar">
+  <span> status: {{ status$ | async }} </span>
+  <span> error: {{ (error$ | async) || 'no error' }} </span>
+</div>
+
+<form
+  class="task-form"
+  [formGroup]="taskForm"
+  (ngSubmit)="addTask()"
+>
+  <input
+    id="task"
+    type="text"
+    formControlName="task"
+  />
+  <input
+    [disabled]="(status$ | async) === 'loading'"
+    type="submit"
+    value="add task"
+  />
+</form>
+
+<hr />
+
+<ol>
+  <li
+    *ngFor="let task of list$ | async"
+    class="task-item"
+    (click)="deleteTask(task)"
+  >
+    {{ task }}
+  </li>
+</ol>

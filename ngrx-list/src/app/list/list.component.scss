@@ -1,0 +1,21 @@
+.task-item {
+  list-style: hiragana;
+  &:hover {
+    background-color: #f5f5f5;
+  }
+}
+
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px;
+}
+
+.task-form {
+  display: flex;
+  justify-content: center;
+  & input[type='text'] {
+    width: 100%;
+  }
+}
